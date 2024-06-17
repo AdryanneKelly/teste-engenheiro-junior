@@ -1,53 +1,68 @@
-# Teste para vaga de Engenheiro full stack Junior
+# Teste Engenheiro Junior
 
-Nesse teste analisaremos seu conhecimento geral, velocidade de desenvolvimento e capacidade de melhoria.
+![alt text](screens/login-page.png)
 
-## Instruções
+## Tecnologias utilizadas
 
-Utilizando o framework PHP Laravel, e um banco de dados relacional SQLite, MySQL ou Postgres, você vai criar uma aplicação de cadastro de pedidos de compra com as seguintes funcionalidades:
+- Laravel 11.x
+- PHP 8.3
+- MySQL 
+- Livewire
+- TailwindCSS
 
-- CRUD de clientes.
-- CRUD de produtos.
-- CRUD de pedidos de compra, com status (Em Aberto, Pago ou Cancelado).
-- Cada CRUD:
-  - conter lista dos itens cadastrados, com filtro e ordenação para tods os campos apresentados.
-  - deve possuir formulários para criação e atualização de seus itens.
-  - deve permitir a deleção de qualquer item de sua lista.
-    
-- API Rest JSON para todos os CRUDS listados.
+No meu projeto, decidi adotar a TALLStack, que representa uma abordagem moderna e eficiente para o desenvolvimento web com Laravel. A escolha do Livewire foi crucial para permitir a criação de interfaces dinâmicas e reativas diretamente do PHP, sem a necessidade de recorrer a grandes quantidades de JavaScript. Isso não só agiliza o processo de desenvolvimento, mas também mantém a aplicação mais coesa, com a lógica de front-end e back-end mais integradas.
 
-## Banco
+Além disso, optei pelo TailwindCSS para a estilização da aplicação. Sua abordagem utility-first me permite construir interfaces de forma rápida e responsiva, sem a necessidade de escrever CSS personalizado do zero. Isso simplifica significativamente a manutenção do código de estilo, pois posso reutilizar classes utilitárias em toda a aplicação, garantindo consistência e eficiência no design.
 
-- O banco de dados deve ser criado utilizando Migrations do framework Laravel, e também utilizar Seeds e Factorys para popular as informações no banco de dados.
-- Implementação das validações necessárias.
+## Como rodar o projeto:
 
-## Tecnologias:
+### Instalação via Docker  
 
-- HTML
-- CSS
-- Javascript(Poderá ser utilizado frameworks)
-- Framework Laravel (PHP)
-- Docker (construção do ambiente de desenvolvimento)
+Faça uma cópia do arquivo .env.example e renomeie para .env.
 
-## Entrega
+`cp .env.example .env`
 
-- Para iniciar o teste, faça um fork deste repositório; **Se você apenas clonar o repositório não vai conseguir fazer push.**
-- Crie uma branch com o seu nome completo;
-- Altere o arquivo teste-engenheiro-junior.md com as informações necessárias para executar o seu teste (comandos, migrations, seeds, etc);
-- Depois de finalizado, envie-nos o pull request;
+Mude o DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD para:
 
-## Bônus
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=password
+```
 
-- Implementar autenticação de usuário na aplicação.
-- Implementar aplicação de desconto em alguns pedidos de compra.
+Se necessário, conceda as permissões para as pastas storage e boostrap/cache:
+
+`sudo chmod -R 777 storage && chmod -R 777 bootstrap/cache`
 
 
-## O que iremos analisar
+Rode o comando abaixo para executar os containers na raiz do projeto:
 
-- Organização do código;
-- Aplicação de design patterns;
-- Separação de módulos e componentes;
-- Legibilidade;
-- Criação do ambiente com Docker.
-- Inovação e melhorias.
-- Evolução do front end.
+`docker compose up --build`
+
+Com os containers up, abra outro terminal e execute os comandos abaixo para instalar as dependências e gerar as migrations e seeders:
+
+`docker compose exec -it php bash`
+
+`composer install`
+
+`php artisan key:generate`
+
+`php artisan migrate`
+
+`php artisan db:seed`
+
+Acesse o projeto com a URL localhost:8081/login
+
+Você pode usar as credenciais para realizar o login:
+
+Email:`test@example.com`  
+Senha: `password`
+
+Ou se preferir, crie uma conta.
+
+Obrigada 💜
+
+
